@@ -983,6 +983,7 @@ impl<BackendData: Backend + 'static> AnvilState<BackendData> {
                             render_element_states,
                             &dmabuf_feedback.render_feedback,
                             &dmabuf_feedback.scanout_feedback,
+                            &dmabuf_feedback.async_feedback,
                         )
                     });
                 }
@@ -1027,6 +1028,7 @@ impl<BackendData: Backend + 'static> AnvilState<BackendData> {
                         render_element_states,
                         &dmabuf_feedback.render_feedback,
                         &dmabuf_feedback.scanout_feedback,
+                        &dmabuf_feedback.async_feedback,
                     )
                 });
             }
@@ -1168,6 +1170,7 @@ pub fn update_primary_scanout_output(
 pub struct SurfaceDmabufFeedback {
     pub render_feedback: DmabufFeedback,
     pub scanout_feedback: DmabufFeedback,
+    pub async_feedback: DmabufFeedback,
 }
 
 #[profiling::function]

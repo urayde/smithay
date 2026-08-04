@@ -374,6 +374,7 @@ fn get_non_master_fd<P: AsRef<Path>>(path: P) -> Result<OwnedFd, Error> {
     match drm_ffi::auth::release_master(fd.as_fd()) {
         Ok(()) => {}
         Err(e) if e.kind() == io::ErrorKind::InvalidInput => {}
+        Err(e) if e.kind() == io::ErrorKind::PermissionDenied => {}
         Err(e) => return Err(Error::UnableToDropMaster(e)),
     }
 
